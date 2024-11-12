@@ -1,66 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Idea Tracker
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel-based web application for capturing and organizing creative project ideas. This application allows users to store, manage, and track their creative ideas across different categories.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- *Create* new ideas with title, category, description, and priority level
+- *View* all ideas with pagination (10 items per page)
+- *Update* existing ideas
+- *Delete* ideas no longer needed
+- *Search* functionality to filter ideas by title or category
+- *Priority-based sorting* to focus on high-priority ideas
+- Input validation to ensure data integrity
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Technical Implementation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Database Structure
 
-## Learning Laravel
+The application uses a single table named ideas with the following structure:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+sql
+ideas
+- id (primary key)
+- title (string, required)
+- category (string, required)
+- description (text, required)
+- priority_level (integer, required)
+- created_at (timestamp)
+- updated_at (timestamp)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Key Laravel Features Utilized
 
-## Laravel Sponsors
+1. *Model*: Eloquent model with proper validation rules
+2. *Controllers*: RESTful resource controller implementing CRUD operations
+3. *Views*: Blade templates with components and layouts
+4. *Form Validation*: Server-side validation using Laravel's validator
+5. *Eloquent Features*: Query scopes for search and filtering
+6. *Blade Components*: Reusable components for forms and cards
+7. *Route Resource*: Utilization of Laravel's resource routing
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Good Practices Implemented
 
-### Premium Partners
+1. Database table follows First Normal Form (1NF)
+2. Consistent color scheme and typography for readability
+3. Responsive layout for desktop resolution (1366x768)
+4. Clear navigation structure
+5. Input validation with user feedback
+6. Meaningful error messages
+7. Clean code structure following Laravel conventions
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Installation Instructions
 
-## Contributing
+1. Clone the repository
+2. Run composer install
+3. Copy .env.example to .env and configure database settings
+4. Run php artisan key:generate
+5. Run php artisan migrate --seed
+6. Run php artisan serve
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+The application will be available at http://localhost:8000
 
-## Code of Conduct
+## Design Decisions
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- *Single Table Design*: While categories could be normalized into a separate table, keeping them in the main table adheres to the assignment requirement of using a single table while maintaining data integrity.
+- *Priority Levels*: Implemented as integers (1-5) for easy sorting and filtering.
+- *Search Implementation*: Uses a simple but effective search across title and category fields.
+- *Pagination*: Set to 10 items per page for optimal user experience.
